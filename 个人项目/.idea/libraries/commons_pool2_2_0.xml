@@ -1,0 +1,19 @@
+<component name="libraryTable">
+  <library name="commons-pool2-2.0">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/文本查重程序/src/com/lib/commons-pool2-2.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/文本查重程序/src/com/lib/jedis-2.5.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/文本查重程序/src/com/lib/logback-classic-0.9.28.jar!/" />
+      <root url="jar://$PROJECT_DIR$/文本查重程序/src/com/lib/logback-core-0.9.28.jar!/" />
+      <root url="jar://$PROJECT_DIR$/文本查重程序/src/com/lib/pinyin4j-2.5.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/文本查重程序/src/com/lib/slf4j-api-1.6.4.jar!/" />
+      <root url="jar://$PROJECT_DIR$/文本查重程序/src/com/lib/word-1.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/文本查重程序/src/com/lib/word-1.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/文本查重程序/src/com/lib/word-1.2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/文本查重程序/src/com/lib/word-1.3.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/文本查重程序/src/com/lib/word-1.3.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
