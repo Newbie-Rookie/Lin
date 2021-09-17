@@ -9,20 +9,6 @@ import java.util.List;
  *  TF-IDF算法计算文本相似度
  */
 public class Tf_IdfUtil {
-    public static void main(String[] args) {
-        String sourceFileContent = FileUtil.read("C:\\Users\\a\\Desktop\\课程\\大三\\软件工程\\博客园\\Project1\\测试文本\\orig.txt");
-        String copyFileContent = FileUtil.read("C:\\Users\\a\\Desktop\\课程\\大三\\软件工程\\博客园\\Project1\\测试文本\\orig_0.8_add.txt");
-        List<Word> word1 = WordsUtil.cutfileContent(sourceFileContent);
-        List<Word> word2 = WordsUtil.cutfileContent(copyFileContent);
-        for(Word word:word1){
-            System.out.println(word);
-        }
-        for(Word word:word2){
-            System.out.println(word);
-        }
-        System.out.println(similarity(word1,word2));
-    }
-
     /**
      * 计算文本相似度算法
      * @param word1 传入原文件的分词内容

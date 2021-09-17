@@ -20,8 +20,8 @@ public class StartClass {
         String copyFileContent = FileUtil.read(args[1]);
 
         // 对文本内容进行分词
-        List<Word> sourceCutFileContent = WordsUtil.cutfileContent(sourceFileContent);
-        List<Word> copyCutFileContent = WordsUtil.cutfileContent(copyFileContent);
+        List<Word> sourceCutFileContent = WordsUtil.cutFileContent(sourceFileContent);
+        List<Word> copyCutFileContent = WordsUtil.cutFileContent(copyFileContent);
 
         // 计算文本相似度
         double duplicateCheckingRate = Tf_IdfUtil.similarity(sourceCutFileContent,copyCutFileContent);
