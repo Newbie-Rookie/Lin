@@ -13,6 +13,7 @@ import java.util.List;
  */
 public class StartClass {
     public static void main(String[] args) {
+        long start = System.currentTimeMillis();
         // 从命令行输入的路径名读取对应的文件
         // 将原文件的内容转化为对应的字符串
         String sourceFileContent = FileUtil.read(args[0]);
@@ -41,6 +42,8 @@ public class StartClass {
         System.out.println("查重结果已写入文件: " + ansFileName);
         System.out.println("该文件绝对路径为: " + args[2]);
 
+        // 输出此次耗时
+        System.out.println("耗时: " + (System.currentTimeMillis() - start) + "毫秒");
         // 退出程序
         System.exit(0);
     }
