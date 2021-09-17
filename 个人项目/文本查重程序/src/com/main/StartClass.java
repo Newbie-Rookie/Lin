@@ -43,7 +43,7 @@ public class StartClass {
         System.out.println("该文件绝对路径为: " + args[2]);
 
         // 输出此次耗时
-        System.out.println("耗时: " + (System.currentTimeMillis() - start) + "毫秒");
+        System.out.println("耗时: " + (System.currentTimeMillis() - start) + "ms");
         // 退出程序
         System.exit(0);
     }
