@@ -67,10 +67,16 @@ public class testCase {
         duplicateCheckingRate = Tf_IdfUtil.similarity(sourceCutFileContent, copyCutFileContent);
         System.out.println("字符串部分缺失情况: " + duplicateCheckingRate);
 
+        // 测试存在字符串为空串的情况
+        sourceCutFileContent = WordsUtil.cutFileContent("今天是星期天,天气晴,今天晚上我要去看电影。");
+        copyCutFileContent = WordsUtil.cutFileContent("");
+        duplicateCheckingRate = Tf_IdfUtil.similarity(sourceCutFileContent, copyCutFileContent);
+        System.out.println("存在字符串为空串情况: " + duplicateCheckingRate);
+
         // 测试字符串为空串的情况
         sourceCutFileContent = WordsUtil.cutFileContent("");
         copyCutFileContent = WordsUtil.cutFileContent("");
         duplicateCheckingRate = Tf_IdfUtil.similarity(sourceCutFileContent, copyCutFileContent);
-        System.out.println("字符串为空串情况: " + duplicateCheckingRate);
+        System.out.println("两字符串均为空串情况: " + duplicateCheckingRate);
     }
 }

@@ -16,6 +16,9 @@ public class WordsUtil {
      * @return List<Word> 返回分词结果
      */
     public static List<Word> cutFileContent(String fileContent){
+        if("".equals(fileContent)){
+            throw new NullPointerException("文件内容为空! ");
+        }
         // 调用word分词器中的分词函数
         List<Word> cutFileContent = WordSegmenter.segWithStopWords(fileContent);
         // 返回分词后的内容
@@ -28,7 +31,7 @@ public class WordsUtil {
      * @return List<Word> 返回分词结果
      */
     public static List<Word> cutFileContent(File file){
-        // 传入文件对象,获取文件的绝对路径,
+        // 传入文件对象,获取文件的绝对路径
         String fileContent = FileUtil.read(file.getAbsolutePath());
         // 调用word分词器中的分词函数
         List<Word> cutFileContent = WordSegmenter.segWithStopWords(fileContent);
