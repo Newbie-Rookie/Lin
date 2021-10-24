@@ -8,7 +8,7 @@ import java.util.Stack;
 /**
  * 表达式转换为二叉树类
  */
-public class RprToBinaryTree {
+public class ExerciseToBinaryTree {
     /**
      * 将正常算术表达式(中缀表达式)转换为二叉树
      * 先将中缀表达式转换为后缀表达式
