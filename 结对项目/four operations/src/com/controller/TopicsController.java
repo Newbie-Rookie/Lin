@@ -1,6 +1,7 @@
 package com.controller;
 
-import com.service.CompareTheAnswer;
+import com.model.Operand;
+import com.service.CompareAnswer;
 import com.view.Grade;
 import com.view.TopicsView;
 
@@ -8,8 +9,6 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
 import java.util.ArrayList;
 
 /**
@@ -21,27 +20,38 @@ public class TopicsController extends TopicsView {
         commitButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                ArrayList<String> answer = new ArrayList<>();
-                // 行数
+                // 答案行数
                 int row = table.getRowCount();
+                // 存储自填答案
+                ArrayList<String> answer = new ArrayList<>();
                 // 获取自填答案
                 for (int i = 0; i < row; i++) {
                     String value = (String)table.getValueAt(i,1);
-                    answer.add(value);
+                    // 判断输入答案格式是否正确
+                    // 未填或填入0
+                    if("".equals(value) || "0".equals(value)){
+                        answer.add(value);
+                        continue;
+                    }
+                    // 除0外的非负整数
+                    if(value.matches("[1-9][0-9]*")){
+                        answer.add(value);
+                        continue;
+                    }
+                    // 分数
+                    if(value.matches("[0-9]+/[0-9]+")){
+                        answer.add(Operand.stringToOperand(value).toString());
+                        continue;
+                    }
+                    showMessage("第" + (i + 1) + "题答案输入格式不正确！\n正确格式为整数正常输入，分数(真分数/假分数)均为分子/分母",0);
+                    return;
                 }
-                // 获取对比结果
-                String[] correctAndWrong = CompareTheAnswer.compare(answer);
+                // 计算对比结果并将结果写入文件
+                int[] caw = CompareAnswer.compare(answer);
+                // 生成提示信息
+                showMessage("提交成功！",1);
                 // 生成结果图
-                Grade.grade(correctAndWrong[0],correctAndWrong[1]);
-                // showMessage(result,0);
-            }
-        });
-
-        // 关闭窗口时事件
-        frame.addWindowListener(new WindowAdapter() {
-            @Override
-            public void windowClosing(WindowEvent e) {
-                System.exit(0);
+                new Grade(caw[0],caw[1]);
             }
         });
     }

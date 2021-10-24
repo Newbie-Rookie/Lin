@@ -13,20 +13,24 @@ import java.text.DecimalFormat;
 import java.text.NumberFormat;
 
 public class Grade {
-    public static void main(String[] args) {
-        grade("1,2,3","4,5");
+    // UI(图表窗口)
+    public ChartFrame frame;
+    // 图表
+    public JFreeChart chart;
+
+    public Grade(int correct,int wrong){
+        initUI(correct,wrong);
     }
 
-    public static void grade(String correct,String wrong) {
+    public void initUI(int correct,int wrong) {
+        // 标题
+        String title = "详细结果查看Grade.txt文件";
+        // 图标数据
         DefaultPieDataset dataset = new DefaultPieDataset();
-        // 添加数据
-        int c = (int)Math.ceil(correct.length()/2.0);
-        dataset.setValue("Correct",c);
-        int w = (int)Math.ceil(wrong.length()/2.0);
-        dataset.setValue("Wrong",w);
+        dataset.setValue("Correct",correct);
+        dataset.setValue("Wrong",wrong);
         // 主标题、图标显示的数据集合、是否显示子标题、是否生成提示的标签、是否生成URL链接
-        String title = "Correct: " + c + "道 (" + correct + ")  ,  " + "Wrong: " + w + "道 (" + wrong + ")";
-        JFreeChart chart = ChartFactory.createPieChart3D("",dataset,true,true,true);
+        chart = ChartFactory.createPieChart3D("",dataset,true,true,true);
         chart.setTitle(new TextTitle(title,new Font("华文新魏",Font.BOLD,25)));
         chart.setBackgroundPaint(Color.WHITE);
         // 处理图形上的乱码
@@ -51,8 +55,14 @@ public class Grade {
         pie.setSectionPaint(0,Color.BLUE);
         pie.setSectionPaint(1,Color.PINK);
 
-        ChartFrame frame = new ChartFrame("答题结果",chart);
+        frame = new ChartFrame("答题结果",chart);
         frame.setVisible(true);
         frame.setSize(520,350);
+
+        // 窗口在屏幕中间显示
+        Toolkit kit = Toolkit.getDefaultToolkit();
+        int x = (kit.getScreenSize().width - frame.getWidth()) / 2;
+        int y = (kit.getScreenSize().height - frame.getHeight()) / 2;
+        frame.setLocation(x, y);
     }
 }
