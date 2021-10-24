@@ -1,6 +1,6 @@
 package com.controller;
 
-import com.service.ProduceProgram;
+import com.service.GenerateExcerises;
 import com.view.InputView;
 
 import javax.swing.*;
@@ -11,10 +11,9 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
 /**
- *  输入窗口控制端
+ *  输入窗口控制类
  */
 public class InputController extends InputView {
-    // Status
     // 判断是否提交参数
     private boolean isCommitted;
 
@@ -47,23 +46,30 @@ public class InputController extends InputView {
                     String s1 = numberTextField.getText().trim();
                     String s2 = scopeTextField.getText().trim();
                     // 生成题目数不为自然数
-                    if(!s1.matches("[0-9]+")){
-                        showMessage("输入的生成题目数不符合要求！",0);
+                    if(!s1.matches("^[0-9]+$")){
+                        showMessage("输入的生成题目数不符合要求，应为自然数！",0);
                         return;
                     }
-                    // 数值范围不为自然数
-                    if(!s2.matches("[0-9]+")){
-                        showMessage("输入的数值范围不符合要求！",0);
+                    // 数值范围不为正整数
+                    if(!s2.matches("^[1-9]+[0-9]*$")){
+                        showMessage("输入的数值范围不符合要求，应为正整数！",0);
                         return;
                     }
                     // 组件控制
                     isCommitted = true;
                     serviceUISetting(isCommitted);
+                    // 生成提示信息
                     showMessage("提交成功！",1);
-                    // 调用produce()方法生成题目
+                    // 调用generateExercises()方法生成题目
                     int number = Integer.parseInt(s1);
                     int scope = Integer.parseInt(s2);
-                    ProduceProgram.produce(number,scope);
+                    try {
+                        GenerateExcerises.generateExercises(number,scope);
+                    } catch (Exception ex) {
+                        ex.printStackTrace();
+                    }
+                    // 展示题目
+                    new TopicsController();
                 }
             }
         });

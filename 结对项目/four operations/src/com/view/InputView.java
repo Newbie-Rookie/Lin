@@ -4,12 +4,12 @@ import javax.swing.*;
 import java.awt.*;
 
 /**
- *  输入窗口
+ *  输入窗口类
  */
 public class InputView {
     // UI
     public JFrame frame;
-    // 面板
+    // 设置面板
     public JPanel settingPanel;
     // 题目个数输入框、数值范围输入框
     public JTextField numberTextField, scopeTextField;
@@ -34,21 +34,27 @@ public class InputView {
         frame.setResizable(false);
         frame.setLayout(new BorderLayout());
 
-        // 配置面板
+        // 窗口在屏幕中间显示
+        Toolkit kit = Toolkit.getDefaultToolkit();
+        int x = (kit.getScreenSize().width - frame.getWidth()) / 2;
+        int y = (kit.getScreenSize().height - frame.getHeight()) / 2;
+        frame.setLocation(x, y);
+
+        // 设置面板
         settingPanel = new JPanel();
         // 设置布局为一行八列
         settingPanel.setLayout(new GridLayout(3, 2,10,5));
         settingPanel.setBackground(Color.WHITE);
-        // 为配置面板添加组件
-        JLabel jlabel_1 = new JLabel("生成题目数(自然数)",JLabel.CENTER);
+        // 为设置面板添加组件
+        JLabel jlabel_1 = new JLabel("题目数",JLabel.CENTER);
         jlabel_1.setFont(new Font("华文新魏",Font.PLAIN,20));
         settingPanel.add(jlabel_1);
 
-        JLabel jlabel_2 = new JLabel("数值范围(自然数)",JLabel.CENTER);
+        JLabel jlabel_2 = new JLabel("数值范围",JLabel.CENTER);
         jlabel_2.setFont(new Font("华文新魏",Font.PLAIN,20));
         settingPanel.add(jlabel_2);
 
-        // 面板(设置默认参数)
+        // 输入框
         numberTextField = new JTextField("10");
         numberTextField.setHorizontalAlignment(JTextField.CENTER);
         numberTextField.setFont(new Font("Times New Roman",Font.BOLD,30));
@@ -65,13 +71,14 @@ public class InputView {
         scopeTextField.setForeground(Color.BLUE);
         settingPanel.add(scopeTextField);
 
-        // 提交组件
+        // 重置组件
         resetButton = new JButton("Reset");
         resetButton.setFont(new Font("Times New Roman",Font.BOLD,20));
         resetButton.setForeground(Color.CYAN);
         resetButton.setBackground(Color.BLACK);
         settingPanel.add(resetButton);
 
+        // 提交组件
         commitButton = new JButton("Commit");
         commitButton.setFont(new Font("Times New Roman",Font.BOLD,20));
         commitButton.setForeground(Color.CYAN);
@@ -80,8 +87,8 @@ public class InputView {
 
         // 向窗口中添加面板
         frame.add(settingPanel, "Center");
+        // 显示窗口
         frame.setVisible(true);
-
         // 设置按钮以及文本框的默认状态
         serviceUISetting(false);
     }
