@@ -12,6 +12,8 @@ import java.awt.*;
  *  题目窗口
  */
 public class TopicsView {
+    // 父窗口
+    public JFrame fatherFrame;
     // UI
     public JFrame frame;
     // 提示面板
@@ -25,10 +27,14 @@ public class TopicsView {
     // 提交按钮
     public JButton commitButton;
 
+    public TopicsView(){
+    }
+
     /**
      * 构造方法
      */
-    public TopicsView () {
+    public TopicsView (JFrame fatherFrame) {
+        this.fatherFrame = fatherFrame;
         initUI();
     }
 

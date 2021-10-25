@@ -17,7 +17,9 @@ import java.util.ArrayList;
  *  题目窗口控制端
  */
 public class TopicsController extends TopicsView {
-    public TopicsController(){
+    public TopicsController(JFrame fatherFrame){
+        super(fatherFrame);
+
         // 单击提交按钮时事件
         commitButton.addActionListener(new ActionListener() {
             @Override
@@ -47,8 +49,10 @@ public class TopicsController extends TopicsView {
                 int[] caw = CompareAnswer.compare(answer);
                 // 生成提示信息
                 showMessage("提交成功！",1);
+                // 将当前窗口锁定
+                frame.setEnabled(false);
                 // 生成结果图
-                new Grade(caw[0],caw[1]);
+                new Grade(frame,caw[0],caw[1]);
             }
         });
 
@@ -57,7 +61,7 @@ public class TopicsController extends TopicsView {
             @Override
             public void windowClosing(WindowEvent e) {
                 // 新建一输入窗口
-                new InputController();
+                fatherFrame.setVisible(true);
             }
         });
     }

@@ -8,17 +8,23 @@ import org.jfree.chart.plot.PiePlot3D;
 import org.jfree.chart.title.TextTitle;
 import org.jfree.data.general.DefaultPieDataset;
 
+import javax.swing.*;
 import java.awt.*;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
 
 public class Grade {
+    // 父窗口
+    public JFrame fatherFrame;
     // UI(图表窗口)
     public ChartFrame frame;
     // 图表
     public JFreeChart chart;
 
-    public Grade(int correct,int wrong){
+    public Grade(JFrame fatherFrame,int correct,int wrong){
+        this.fatherFrame = fatherFrame;
         initUI(correct,wrong);
     }
 
@@ -64,5 +70,13 @@ public class Grade {
         int x = (kit.getScreenSize().width - frame.getWidth()) / 2;
         int y = (kit.getScreenSize().height - frame.getHeight()) / 2;
         frame.setLocation(x, y);
+
+        // 关闭窗口时事件
+        frame.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                fatherFrame.setEnabled(true);
+            }
+        });
     }
 }

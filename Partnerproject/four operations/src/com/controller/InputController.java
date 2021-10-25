@@ -71,7 +71,7 @@ public class InputController extends InputView {
                     // 隐藏窗口
                     frame.setVisible(false);
                     // 展示题目
-                    new TopicsController();
+                    new TopicsController(frame);
                 }
             }
         });
