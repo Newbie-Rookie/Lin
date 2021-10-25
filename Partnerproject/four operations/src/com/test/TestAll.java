@@ -1,4 +1,4 @@
-package com.text;
+package com.test;
 
 import com.service.CompareAnswer;
 import com.service.GenerateExcerises;
@@ -12,16 +12,19 @@ public class TestAll {
      * @throws Exception
      */
     @Test
-    public void testGenerateExercises() throws Exception {
-        GenerateExcerises.generateExercises(10000,10);
+    public void testGenerateExercises() {
+        try {
+            GenerateExcerises.generateExercises(10000,10);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     /**
      * 测试程序生成的答案是否完全正确，注意需要先生成题目文件和答案文件
-     * @throws Exception
      */
     @Test
-    public void testCheck() throws Exception {
+    public void testCheck() {
         CompareAnswer.compare(new ArrayList<>());
     }
 }

@@ -26,7 +26,7 @@ public class ExerciseToBinaryTree {
             String oper = rprQueue.poll();
             BinaryTreeNode node = new BinaryTreeNode(oper);
             if(ExerciseToRpr.isOperator(oper)){
-                // 若为运算符节点，则弹出栈顶两个操作数节点作为运算符结点的左右节点
+                // 若为运算符节点，则弹出栈顶两个节点作为运算符结点的左右节点
                 // 先弹出的作为右节点，后弹出的作为左节点
                 node.setRightNode(nodeStack.pop());
                 node.setLeftNode(nodeStack.pop());
