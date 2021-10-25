@@ -19,7 +19,7 @@ public class InputView {
     /**
      * 构造方法
      */
-    public InputView() {
+    public InputView(){
         initUI();
     }
 
