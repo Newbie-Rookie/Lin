@@ -13,11 +13,13 @@ public class TestAll {
      */
     @Test
     public void testGenerateExercises() {
+        long start = System.currentTimeMillis();
         try {
             GenerateExcerises.generateExercises(10000,10);
         } catch (Exception e) {
             e.printStackTrace();
         }
+        System.out.println("耗时: " + (System.currentTimeMillis() - start) + "ms");
     }
 
     /**
@@ -25,6 +27,8 @@ public class TestAll {
      */
     @Test
     public void testCheck() {
+        long start = System.currentTimeMillis();
         CompareAnswer.compare(new ArrayList<>());
+        System.out.println("耗时: " + (System.currentTimeMillis() - start) + "ms");
     }
 }
