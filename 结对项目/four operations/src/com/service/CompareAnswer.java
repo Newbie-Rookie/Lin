@@ -19,13 +19,11 @@ public class CompareAnswer {
         String[] rightAnswerStr = FileContentProcess.read(answersPath).split("\n");
         // 题目数
         int len = answer.size();
-        System.out.println(len);
         // 正确答案
         String[] rightAnswer = new String[len];
         // 剔除题号
         for(int i = 0;i < len;++i){
             rightAnswer[i] = rightAnswerStr[i].split("、")[1];
-            System.out.println(rightAnswer[i]);
         }
         // 正确题目
         StringBuffer correct = new StringBuffer();
@@ -41,15 +39,17 @@ public class CompareAnswer {
                 wrong.append(",");
             }
         }
+        // 正确/错误题目数
+        int c = 0,w = 0;
         // 删除最后一个逗号
         if(correct.length() != 0){
             correct.deleteCharAt(correct.length()-1);
+            c = correct.toString().split(",").length;
         }
         if(wrong.length() != 0){
             wrong.deleteCharAt(wrong.length()-1);
+            w = wrong.toString().split(",").length;
         }
-        int c = (int)Math.ceil(correct.length()/2.0);
-        int w = (int)Math.ceil(wrong.length()/2.0);
         // 生成结果
         String result = "Correct: " + c + " (" + correct + ")\n" +
                         "Wrong: " + w + " (" + wrong + ")";
