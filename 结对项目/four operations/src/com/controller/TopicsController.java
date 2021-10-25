@@ -9,6 +9,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.util.ArrayList;
 
 /**
@@ -28,22 +30,17 @@ public class TopicsController extends TopicsView {
                 for (int i = 0; i < row; i++) {
                     String value = (String)table.getValueAt(i,1);
                     // 判断输入答案格式是否正确
-                    // 未填或填入0
-                    if("".equals(value) || "0".equals(value)){
+                    // 未填、填入0、除0外的整数
+                    if("".equals(value) || "0".equals(value) || value.matches("-?[1-9][0-9]*")){
                         answer.add(value);
                         continue;
                     }
-                    // 除0外的非负整数
-                    if(value.matches("[1-9][0-9]*")){
-                        answer.add(value);
-                        continue;
-                    }
-                    // 分数
-                    if(value.matches("[0-9]+/[0-9]+")){
+                    // 真分数和带分数
+                    if(value.matches("-?[0-9]+/[0-9]+") || value.matches("-?[0-9]+'[0-9]+/[0-9]+")){
                         answer.add(Operand.stringToOperand(value).toString());
                         continue;
                     }
-                    showMessage("第" + (i + 1) + "题答案输入格式不正确！\n正确格式为整数正常输入，分数(真分数/假分数)均为分子/分母",0);
+                    showMessage("第" + (i + 1) + "题答案输入格式不正确！\n正确格式:整数(非负整数)，真分数(分子/分母)，假分数(整数'分子/分母)",0);
                     return;
                 }
                 // 计算对比结果并将结果写入文件
@@ -52,6 +49,15 @@ public class TopicsController extends TopicsView {
                 showMessage("提交成功！",1);
                 // 生成结果图
                 new Grade(caw[0],caw[1]);
+            }
+        });
+
+        // 关闭窗口时事件
+        frame.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                // 新建一输入窗口
+                new InputController();
             }
         });
     }

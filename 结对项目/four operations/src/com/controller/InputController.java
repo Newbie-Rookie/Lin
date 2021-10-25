@@ -68,6 +68,8 @@ public class InputController extends InputView {
                     } catch (Exception ex) {
                         ex.printStackTrace();
                     }
+                    // 隐藏窗口
+                    frame.setVisible(false);
                     // 展示题目
                     new TopicsController();
                 }

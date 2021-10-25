@@ -54,7 +54,7 @@ public class TopicsView {
         jLabel_1.setFont(new Font("华文新魏",Font.BOLD,15));
         jLabel_1.setForeground(Color.BLUE);
         jLabel_1.setBackground(Color.white);
-        JLabel jLabel_2 = new JLabel("<HTML><font color=black>答案格式要求: </font><font color=blue>整数正常输入，分数(真分数/假分数)均为分子/分母</font></html>");
+        JLabel jLabel_2 = new JLabel("<HTML><font color=black>答案格式要求: </font><font color=blue>真分数(分子/分母)，假分数(整数'分子/分母)</font></html>");
         jLabel_2.setFont(new Font("华文新魏",Font.BOLD,15));
         jLabel_2.setForeground(Color.BLUE);
         jLabel_2.setBackground(Color.white);
